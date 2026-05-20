@@ -2,8 +2,8 @@
   "name": "portfolio-corporate-theme",
   "private": true,
   "scripts": {
-    "build": "sass assets/theme.scss assets/theme.css --style=expanded --no-source-map && sass assets/page-templates.scss assets/page-templates.css --style=expanded --no-source-map && sass assets/portfolio-tailwind-compat.scss assets/portfolio-tailwind-compat.css --style=expanded --no-source-map",
-    "watch": "sass --watch assets/theme.scss:assets/theme.css assets/page-templates.scss:assets/page-templates.css assets/portfolio-tailwind-compat.scss:assets/portfolio-tailwind-compat.css --style=expanded --no-source-map"
+    "build": "sass assets/theme.scss assets/theme.css --style=expanded --no-source-map && sass assets/portfolio-tailwind-compat.scss assets/portfolio-tailwind-compat.css --style=expanded --no-source-map",
+    "watch": "sass --watch assets/theme.scss:assets/theme.css assets/portfolio-tailwind-compat.scss:assets/portfolio-tailwind-compat.css --style=expanded --no-source-map"
   },
   "devDependencies": {
     "sass": "^1.83.0"

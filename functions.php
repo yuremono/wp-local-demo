@@ -109,27 +109,13 @@ function theme_setup(): void {
 add_action('after_setup_theme', 'theme_setup');
 
 /**
- * Enqueue Google Fonts + stylesheet.
+ * Enqueue front-end stylesheet.
  */
 function theme_enqueue_assets(): void {
 	wp_enqueue_style(
-		'theme-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap',
-		array(),
-		null
-	);
-
-	wp_enqueue_style(
 		'theme-main-css',
 		get_template_directory_uri() . '/assets/theme.css',
-		array('theme-google-fonts'),
-		THEME_VERSION
-	);
-
-	wp_enqueue_style(
-		'theme-style-css',
-		get_stylesheet_uri(),
-		array('theme-main-css'),
+		array(),
 		THEME_VERSION
 	);
 
@@ -150,43 +136,6 @@ function theme_enqueue_assets(): void {
 	}
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
-
-/**
- * 追加レイアウト用スタイルを読み込むページテンプレート（テーマ直下からの相対パス）。
- *
- * @return array<int, string>
- */
-function theme_page_template_asset_files(): array {
-	return array(
-		'page-templates/page-company.php',
-		'page-templates/page-concept.php',
-		'page-templates/page-philosophy.php',
-		'page-templates/page-faq.php',
-		'page-templates/page-services-overview.php',
-		'page-templates/page-privacy-layout.php',
-	);
-}
-
-/**
- * page-templates.scss の出力 CSS を該当テンプレート時のみ読み込む。
- */
-function theme_enqueue_page_template_assets(): void {
-	if ( ! is_page() ) {
-		return;
-	}
-	foreach ( theme_page_template_asset_files() as $relative_template ) {
-		if ( is_page_template( $relative_template ) ) {
-			wp_enqueue_style(
-				'theme-page-templates',
-				get_template_directory_uri() . '/assets/page-templates.css',
-				array( 'theme-main-css' ),
-				THEME_VERSION
-			);
-			return;
-		}
-	}
-}
-add_action( 'wp_enqueue_scripts', 'theme_enqueue_page_template_assets', 11 );
 
 /**
  * CPT: news（お知らせ）。
