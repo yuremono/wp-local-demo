@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Shippori+Mincho:wght@400;500;600;700&family=Viaoda+Libre&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 :is(.Header, .Footer) [class*=li-slash]:not(.HeaderNavMobile) > ul > li > * {
   position: relative;
 }
@@ -10,6 +9,15 @@
   z-index: 1;
   font-weight: 900;
   font-family: var(--icon);
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
@@ -417,7 +425,8 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -435,6 +444,7 @@ summary::-webkit-details-marker {
 }
 
 ::details-content {
+  -webkit-transition: height 0.4s ease, content-visibility 0.4s allow-discrete;
   transition: height 0.4s ease, content-visibility 0.4s allow-discrete;
   height: 0;
   overflow: hidden;
@@ -446,7 +456,8 @@ summary::-webkit-details-marker {
 
 html {
   font-size: 100%;
-  text-size-adjust: none;
+  -ms-text-size-adjust: none;
+      text-size-adjust: none;
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   scrollbar-gutter: stable;
@@ -497,7 +508,8 @@ a {
 }
 
 img, video {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 main {
@@ -555,6 +567,7 @@ main {
   display: none;
 }
 .Header.UpInit {
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 .Header.UpInit.trans {
@@ -573,7 +586,9 @@ main {
 .Header.EdgeRail .btn {
   display: block;
   --btnC: var(--tx);
-  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
   min-width: var(--head);
   min-height: var(--head);
   border: unset;
@@ -603,7 +618,8 @@ main {
   background-color: var(--innerBG);
   outline: var(--line);
   min-height: var(--head);
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   padding-right: var(--head);
 }
 .Header.EdgeRail .HeaderMenu {
@@ -617,10 +633,19 @@ main {
 }
 @media (min-width: 960px) {
   .Header.InitColumn .HeaderInner:not(.trans *) {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
-    flex-direction: column;
-    align-items: unset;
-    justify-content: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
     background-color: var(--UN);
     gap: 1em var(--innerG);
   }
@@ -635,8 +660,13 @@ main {
     margin-block: calc((var(--head) - 1em) / 2);
   }
   .Header.InitColumn .HeaderItems:not(.trans *) {
-    flex-direction: column;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     gap: 1em var(--itemG);
   }
   .Header.InitColumn .HeaderNav:not(.trans *) {
@@ -644,8 +674,13 @@ main {
     padding-block: var(--navPX);
   }
   .Header.InitColumn .HeaderNav:not(.trans *) ul {
-    flex-direction: column;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   .Header.InitColumn .HeaderNav:not(.trans *) li {
     place-items: unset;
@@ -657,11 +692,15 @@ main {
   margin: unset;
 }
 .Header.Parallel .HeaderInner {
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 @media (max-width: 960px) {
   .Header.Parallel .HeaderInner {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 }
 @media (max-width: 767px) {
@@ -687,7 +726,8 @@ main {
   top: 0;
   right: var(--innerPX);
   display: block;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   height: 100%;
 }
 @media (max-width: 960px) {
@@ -726,17 +766,24 @@ main {
   pointer-events: none;
 }
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate {
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
 }
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate > ul {
-  align-items: start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
 }
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate > ul li {
   display: inline-block;
-  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
   height: unset;
   text-align: left;
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
   padding: calc(var(--headG) / 2);
 }
@@ -749,9 +796,11 @@ main {
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate > ul li.NavDrop ul {
   right: 0;
   left: unset;
-  transform-origin: right;
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate > ul li.NavDrop ul li {
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
 }
 .Header:has(.HeaderNav.__tate) .HeaderNav.__tate > ul li.NavDrop ul li:hover {
@@ -761,6 +810,7 @@ main {
   height: unset;
 }
 .Header:has(.HeaderNav.__tate) nav.KUSHI > ul > li {
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--AC30)), to(var(--AC30))) no-repeat center/2px 100%;
   background: linear-gradient(var(--AC30), var(--AC30)) no-repeat center/2px 100%;
   padding-block: 0.25em;
 }
@@ -771,7 +821,8 @@ main {
   vertical-align: unset;
 }
 .Header:has(.HeaderNav.__tate) nav.KUSHI > ul > li a:hover {
-  filter: brightness(140%);
+  -webkit-filter: brightness(140%);
+          filter: brightness(140%);
 }
 .Header:has(.HeaderNav.__tate) nav.KUSHI > ul > li.NavDrop ul {
   --size: .5em;
@@ -804,36 +855,50 @@ main {
 .Header:has(.HeaderNav.__tate) .HeaderInner {
   height: unset;
   background-color: unset;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 @media (max-width: 767px) {
   .Header:has(.HeaderNav.__tate) .HeaderInner {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 }
 .Header:has(.HeaderNav.__tate) .HeaderLogo {
   overflow: hidden;
 }
 .Header:has(.HeaderNav.__tate) .HeaderItems.FixPC {
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   bottom: var(--gap);
   right: var(--gap);
-  box-shadow: 0 0 2px var(--MC);
+  -webkit-box-shadow: 0 0 2px var(--MC);
+          box-shadow: 0 0 2px var(--MC);
 }
 @media (max-width: 960px) {
   .Header:has(.HeaderNav.__tate) .HeaderItems.FixPC {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     bottom: 0;
     right: 0;
   }
 }
 @media (max-width: 767px) {
   .Header:has(.HeaderNav.__tate) .HeaderItems.FixPC {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     width: 100%;
   }
   .Header:has(.HeaderNav.__tate) .HeaderItems.FixPC > * {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     min-width: unset;
   }
 }
@@ -842,7 +907,9 @@ main {
   top: 0;
 }
 .Header.MvBottom .HeaderInner {
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .Header.MvBottom .HeaderNavMobile li.logo {
   display: none;
@@ -868,7 +935,9 @@ main {
   }
 }
 .Header.InnerWrap .HeaderMenu {
-  order: unset;
+  -webkit-box-ordinal-group: unset;
+      -ms-flex-order: unset;
+          order: unset;
 }
 .Header.InnerWrap .HeaderNav {
   width: 100%;
@@ -877,23 +946,36 @@ main {
   width: unset;
 }
 .Header.InnerWrap .HeaderItems {
-  order: unset;
-  justify-content: end;
+  -webkit-box-ordinal-group: unset;
+      -ms-flex-order: unset;
+          order: unset;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
 }
 .Header.InnerWrap .HeaderInner {
-  flex-direction: row-reverse;
-  justify-content: unset;
-  align-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background-color: unset;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .Header.InnerWrap .HeaderLogo {
   position: absolute;
   top: 0;
   left: var(--logoPX);
+  -webkit-transition: 0.6s 0.3s;
   transition: 0.6s 0.3s;
 }
 .Header.InnerWrap .HeaderLogo:is(.trans *) {
+  -webkit-transition: 0.6s 0s;
   transition: 0.6s 0s;
 }
 @media (max-width: 1560px) {
@@ -909,15 +991,29 @@ main {
   }
 }
 .Header.InnerCol .HeaderInner, .Header.Nav100 .HeaderInner {
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 @media (max-width: 960px) {
   .Header.InnerCol .HeaderInner, .Header.Nav100 .HeaderInner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     padding-block: unset;
   }
 }
@@ -932,7 +1028,9 @@ main {
   }
 }
 .Header.InnerCol .HeaderItems, .Header.Nav100 .HeaderItems {
-  order: unset;
+  -webkit-box-ordinal-group: unset;
+      -ms-flex-order: unset;
+          order: unset;
 }
 .Header.InnerCol .HeaderNav, .Header.Nav100 .HeaderNav {
   height: unset;
@@ -961,7 +1059,8 @@ main {
   height: unset;
   margin-inline: unset;
   margin-bottom: auto;
-  filter: var(--pxdsbc);
+  -webkit-filter: var(--pxdsbc);
+          filter: var(--pxdsbc);
 }
 .Header.LeftSide .HeaderLogo:is(.trans *) {
   scale: 0.75;
@@ -971,24 +1070,40 @@ main {
   padding-block: var(--innerPX);
   padding-inline: unset;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-transition: 0.4s;
   transition: 0.4s;
   gap: 1em;
   pointer-events: none;
 }
 .Header.LeftSide .HeaderInner > * {
   pointer-events: all;
+  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .Header.LeftSide .HeaderItems {
   --btnBG: var(--MC);
   --btnC: var(--WH);
   z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   gap: 1em;
 }
 .Header.LeftSide .HeaderItems > * {
@@ -997,7 +1112,9 @@ main {
 .Header.LeftSide .h_text {
   padding: var(--btnPX);
   line-height: calc(var(--btnH) / 2);
-  flex: unset;
+  -webkit-box-flex: unset;
+      -ms-flex: unset;
+          flex: unset;
   font-size: 70%;
 }
 .Header.LeftSide .HeaderMenu {
@@ -1009,7 +1126,8 @@ main {
   display: grid;
   opacity: 0;
   pointer-events: none;
-  filter: var(--pxdsbc);
+  -webkit-filter: var(--pxdsbc);
+          filter: var(--pxdsbc);
 }
 .Header.LeftSide .HeaderNav {
   width: 100%;
@@ -1026,12 +1144,19 @@ main {
 }
 .Header.LeftSide .HeaderNav > ul {
   width: 100%;
-  flex-direction: column;
-  justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 .Header.LeftSide .HeaderNav ul > li {
   height: unset;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding-inline: unset;
   padding-block: var(--headG);
 }
@@ -1062,6 +1187,7 @@ main {
   background-color: var(--innerBG);
 }
 .Header.LeftSide:not(.home *):not(.active) .HeaderNav, .Header.LeftSide.trans:not(.active) .HeaderNav {
+  -webkit-transition: 0s;
   transition: 0s;
   opacity: 0;
   pointer-events: none;
@@ -1097,7 +1223,10 @@ main {
     pointer-events: all;
   }
   .Header.LeftSide .HeaderItems {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     padding-inline: unset;
   }
   .Header.LeftSide .HeaderItems:is(#Header *) .h_text {
@@ -1109,8 +1238,12 @@ main {
     font-size: var(--btnFZ);
     border-radius: var(--btnRad);
     background-color: var(--WH);
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     gap: var(--btnG);
   }
   .Header.LeftSide.active .HeaderNav {
@@ -1123,12 +1256,16 @@ main {
   --navgap: 2lvh;
 }
 .Header.NavColumnRight .HeaderInner {
-  align-items: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   padding-bottom: 0.5em;
 }
 @media (max-width: 960px) {
   .Header.NavColumnRight .HeaderInner {
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding-bottom: unset;
   }
 }
@@ -1158,8 +1295,13 @@ main {
   padding-block: var(--navgap);
 }
 .Header.NavColumnRight .HeaderNav > ul {
-  flex-direction: column;
-  align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   gap: var(--navgap);
 }
 .Header.NavColumnRight .HeaderNav:is(.trans *) a {
@@ -1176,11 +1318,14 @@ main {
   right: 0;
 }
 .Header.NavColumnRight .HeaderNav > ul li.NavDrop ul a {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   padding-inline: var(--headG);
 }
 .Header.NavColumnRight .HeaderNav > ul li.NavDrop ul {
-  transform-origin: right;
+  -webkit-transform-origin: right;
+          transform-origin: right;
   padding-block: 1em;
 }
 .Header.NavColumnRight .HeaderNav > ul li.NavDrop ul li {
@@ -1200,7 +1345,9 @@ main {
   pointer-events: none;
 }
 .Header.NavBtn .HeaderInner {
-  align-items: unset;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
 }
 .Header.NavBtn .HeaderInner > * {
   pointer-events: all;
@@ -1266,7 +1413,8 @@ main {
   margin-right: auto;
 }
 .Header.LinkShadow a:not(.DropUl *) {
-  filter: var(--dswh) var(--dswh) var(--dswh);
+  -webkit-filter: var(--dswh) var(--dswh) var(--dswh);
+          filter: var(--dswh) var(--dswh) var(--dswh);
 }
 .Header.Triangle svg path {
   fill: white;
@@ -1298,13 +1446,16 @@ main {
 .Header.Triangle .HeaderLogo {
   @apply absolute w-[var(--logoW)] top-1/2 left-0 translate-y-[-50%] pointer-events-auto h-auto;
   background: url(/images/clip01.png) repeat center/20vw;
-  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+          filter: grayscale(50%);
   border-radius: 0 999px 999px 0;
   overflow: hidden;
   border: 10px solid var(--TR);
   border-left: 0;
   aspect-ratio: 1/2;
-  transform-origin: 0 0%;
+  -webkit-transform-origin: 0 0%;
+          transform-origin: 0 0%;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 .Header.Triangle .HeaderLogo:hover {
@@ -1316,7 +1467,8 @@ main {
   padding-left: 0.5em;
   display: block;
   height: 100%;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background-color: var(--WH);
 }
 .Header.Triangle .HeaderLogo a > span {
@@ -1325,7 +1477,8 @@ main {
   paint-order: stroke;
   background: url(/images/clip01.png) repeat 70% 50%/10vw;
   background-color: var(--WH);
-  background-clip: text;
+  -webkit-background-clip: text;
+          background-clip: text;
   color: var(--TR);
 }
 .Header.Triangle .HeaderMenu {
@@ -1342,7 +1495,9 @@ main {
 }
 @media (max-width: 960px) {
   .Header.Triangle .HeaderItems {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
 }
 .Header.Triangle .HeaderItems > a {
@@ -1391,53 +1546,66 @@ main {
 }
 .Header.NavCircleLeft .HeaderNav li {
   @apply py-0 content-center h-[unset];
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--TC)), to(var(--TC))) no-repeat center/100% 1px;
   background: linear-gradient(var(--TC), var(--TC)) no-repeat center/100% 1px;
   background-color: var(--GR10);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(1),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(6) {
-  transform: translateX(44%);
+  -webkit-transform: translateX(44%);
+          transform: translateX(44%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(2),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(5) {
-  transform: translateX(83%);
+  -webkit-transform: translateX(83%);
+          transform: translateX(83%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(3),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(4) {
-  transform: translateX(98%);
+  -webkit-transform: translateX(98%);
+          transform: translateX(98%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(1),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(5) {
-  transform: translateX(49%);
+  -webkit-transform: translateX(49%);
+          transform: translateX(49%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(2),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(4) {
-  transform: translateX(89%);
+  -webkit-transform: translateX(89%);
+          transform: translateX(89%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(3) {
-  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(1),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(4) {
-  transform: translateX(58%);
+  -webkit-transform: translateX(58%);
+          transform: translateX(58%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(2),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(3) {
-  transform: translateX(95.5%);
+  -webkit-transform: translateX(95.5%);
+          transform: translateX(95.5%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(1),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(3) {
-  transform: translateX(68%);
+  -webkit-transform: translateX(68%);
+          transform: translateX(68%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(2) {
-  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(2):last-of-type) li:nth-of-type(1),
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(2):last-of-type) li:nth-of-type(2) {
-  transform: translateX(83%);
+  -webkit-transform: translateX(83%);
+          transform: translateX(83%);
 }
 .Header.NavCircleLeft .HeaderNav ul:has(li:nth-of-type(1):last-of-type) li:nth-of-type(1) {
-  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 .Header.NavCircleLeft .HeaderLogo {
   @apply absolute w-[var(--logoW)] top-1/2 left-0 translate-y-[-50%] pointer-events-auto h-auto z-[1000];
@@ -1445,7 +1613,9 @@ main {
   overflow: hidden;
   border-left: 0;
   aspect-ratio: 1/2;
-  transform-origin: 0 0%;
+  -webkit-transform-origin: 0 0%;
+          transform-origin: 0 0%;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 .Header.NavCircleLeft .HeaderLogo a {
@@ -1454,7 +1624,8 @@ main {
   padding-left: 0.5em;
   display: block;
   height: 100%;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 .Header.NavCircleLeft .HeaderLogo a > span {
   font-weight: 700;
@@ -1462,11 +1633,13 @@ main {
   paint-order: stroke;
   background: url(/images/clip01.png) repeat 70% 50%/10vw;
   background-color: var(--WH);
-  background-clip: text;
+  -webkit-background-clip: text;
+          background-clip: text;
   color: var(--TR);
 }
 .Header.NavCircleLeft .HeaderLogo:has(.LogoCylinder) {
-  filter: none;
+  -webkit-filter: none;
+          filter: none;
   overflow: hidden;
 }
 .Header.NavCircleLeft .HeaderLogo a.LogoObject {
@@ -1493,7 +1666,9 @@ main {
 }
 @media (max-width: 960px) {
   .Header.NavCircleLeft .HeaderItems {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
 }
 .Header.NavCircleLeft .HeaderItems > a {
@@ -1521,7 +1696,9 @@ main {
 }
 .Header.HeaderCylinder .HeaderCylinderLogo {
   @apply z-[1000] absolute w-[calc(var(--logoW)/3*2)] lg:w-[var(--logoW)] top-0 left-0 pointer-events-auto h-auto p-0 border-0 lg:top-1/2 lg:translate-y-[-52.5%];
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   background: var(--TR);
   border-left: 0;
   cursor: pointer;
@@ -1541,10 +1718,12 @@ main {
 }
 .Header.HeaderCylinder .HeaderAnotation > span {
   @apply [grid-area:1/1];
-  animation: header_anotation_toggle calc(var(--annoteInterval) * 2) linear infinite;
+  -webkit-animation: header_anotation_toggle calc(var(--annoteInterval) * 2) linear infinite;
+          animation: header_anotation_toggle calc(var(--annoteInterval) * 2) linear infinite;
 }
 .Header.HeaderCylinder .HeaderAnotation > span:nth-child(2) {
-  animation-delay: calc(var(--annoteInterval) * -1);
+  -webkit-animation-delay: calc(var(--annoteInterval) * -1);
+          animation-delay: calc(var(--annoteInterval) * -1);
 }
 .Header.HeaderCylinder .HeaderNav {
   @apply absolute top-1/2 left-0 translate-y-[-52.5%] z-[100] w-full py-4 lg:py-0 lg:w-[--logoW] justify-start px-0 pointer-events-none;
@@ -1570,9 +1749,13 @@ main {
   @apply text-lg lg:text-base px-2 py-0 my-[1.5lvh] block content-center h-[unset];
   background-color: var(--foreground);
   color: var(--background);
-  transform: translate(0, var(--navClosedY));
+  -webkit-transform: translate(0, var(--navClosedY));
+          transform: translate(0, var(--navClosedY));
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   opacity: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .Header.HeaderCylinder .HeaderNav a, .Header.HeaderCylinder .HeaderNav button {
@@ -1672,9 +1855,12 @@ main {
   border: unset;
   min-width: unset;
   scale: 0 1;
-  transform-origin: left;
+  -webkit-transform-origin: left;
+          transform-origin: left;
 }
 .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl > li {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   background-color: var(--liBG);
   padding-inline: 0.5em;
@@ -1810,7 +1996,8 @@ main {
   .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl {
     inset: unset;
     left: anchor(right);
-    align-self: anchor-center;
+    -ms-flex-item-align: anchor-center;
+        align-self: anchor-center;
   }
 }
 .Header.HeaderCylinder .HeaderNav .DropIcon {
@@ -1820,22 +2007,33 @@ main {
 .Header.HeaderCylinder .HeaderNav .DropIcon:is(.NavDrop:has(.DropUl:popover-open) *) {
   scale: 1 1;
   margin: unset;
-  transform: translateY(0.25rem);
+  -webkit-transform: translateY(0.25rem);
+          transform: translateY(0.25rem);
 }
 .Header.HeaderCylinder[data-nav-open=true] .HeaderNav {
   @apply bg-BC lg:bg-[--TR];
 }
 .Header.HeaderCylinder[data-nav-open=true] .HeaderNav .NavLi {
   opacity: 1;
-  transform: translateX(calc(var(--navX) * var(--logoW)));
+  -webkit-transform: translateX(calc(var(--navX) * var(--logoW)));
+          transform: translateX(calc(var(--navX) * var(--logoW)));
 }
 @media (max-width: 1023px) {
   .Header.HeaderCylinder[data-nav-open=true] .HeaderNav .NavLi {
-    transform: translateX(calc(var(--navX) * var(--logoW) / 3));
+    -webkit-transform: translateX(calc(var(--navX) * var(--logoW) / 3));
+            transform: translateX(calc(var(--navX) * var(--logoW) / 3));
   }
 }
 .Header.HeaderCylinder[data-nav-open=true] .HeaderNav .NavLi {
   pointer-events: auto;
+}
+@-webkit-keyframes header_anotation_toggle {
+  0%, 49.999% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
 }
 @keyframes header_anotation_toggle {
   0%, 49.999% {
@@ -1880,72 +2078,91 @@ main {
 }
 .Header.NavCircleTop .HeaderNav li {
   @apply p-0 h-auto min-h-[--listH] content-center w-auto text-center;
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--TC)), to(var(--TC))) no-repeat center/1px 100%, -webkit-gradient(linear, left top, left bottom, from(var(--TC)), to(var(--TC))) no-repeat center/100% 1px;
   background: linear-gradient(var(--TC), var(--TC)) no-repeat center/1px 100%, linear-gradient(var(--TC), var(--TC)) no-repeat center/100% 1px;
   background-color: var(--GR10);
   display: inline-block;
   width: 50%;
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(1) {
-  transform: translateX(-49.5%);
+  -webkit-transform: translateX(-49.5%);
+          transform: translateX(-49.5%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(2) {
-  transform: translateX(49%);
+  -webkit-transform: translateX(49%);
+          transform: translateX(49%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(3) {
-  transform: translateX(-38%);
+  -webkit-transform: translateX(-38%);
+          transform: translateX(-38%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(4) {
-  transform: translateX(38%);
+  -webkit-transform: translateX(38%);
+          transform: translateX(38%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(5) {
-  transform: translateX(-7%);
+  -webkit-transform: translateX(-7%);
+          transform: translateX(-7%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(6):last-of-type) li:nth-of-type(6) {
-  transform: translateX(7%);
+  -webkit-transform: translateX(7%);
+          transform: translateX(7%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(1),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(5) {
-  transform: translateY(-31%);
+  -webkit-transform: translateY(-31%);
+          transform: translateY(-31%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(2),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(4) {
-  transform: translateY(9%);
+  -webkit-transform: translateY(9%);
+          transform: translateY(9%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(5):last-of-type) li:nth-of-type(3) {
-  transform: translateY(20%);
+  -webkit-transform: translateY(20%);
+          transform: translateY(20%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(1),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(4) {
-  transform: translateY(-22%);
+  -webkit-transform: translateY(-22%);
+          transform: translateY(-22%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(2),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(3) {
-  transform: translateY(15.5%);
+  -webkit-transform: translateY(15.5%);
+          transform: translateY(15.5%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(1),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(3) {
-  transform: translateY(-12%);
+  -webkit-transform: translateY(-12%);
+          transform: translateY(-12%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(2) {
-  transform: translateY(20%);
+  -webkit-transform: translateY(20%);
+          transform: translateY(20%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(2):last-of-type) li:nth-of-type(1),
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(2):last-of-type) li:nth-of-type(2) {
-  transform: translateY(3%);
+  -webkit-transform: translateY(3%);
+          transform: translateY(3%);
 }
 .Header.NavCircleTop .HeaderNav ul:has(li:nth-of-type(1):last-of-type) li:nth-of-type(1) {
-  transform: translateY(20%);
+  -webkit-transform: translateY(20%);
+          transform: translateY(20%);
 }
 .Header.NavCircleTop .HeaderLogo {
   @apply absolute w-[var(--logoW)] top-1/2 left-0 translate-y-[-50%] pointer-events-auto h-auto;
   background: url(/images/clip01.png) repeat center/20vw;
-  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+          filter: grayscale(50%);
   border-radius: 0 999px 999px 0;
   overflow: hidden;
   border: 10px solid var(--TR);
   border-left: 0;
   aspect-ratio: 1/2;
-  transform-origin: 0 0%;
+  -webkit-transform-origin: 0 0%;
+          transform-origin: 0 0%;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   border: var(--line);
 }
@@ -1958,7 +2175,8 @@ main {
   padding-left: 0.5em;
   display: block;
   height: 100%;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background-color: var(--WH);
 }
 .Header.NavCircleTop .HeaderLogo a > span {
@@ -1967,7 +2185,8 @@ main {
   paint-order: stroke;
   background: url(/images/clip01.png) repeat 70% 50%/10vw;
   background-color: var(--WH);
-  background-clip: text;
+  -webkit-background-clip: text;
+          background-clip: text;
   color: var(--TR);
 }
 .Header.NavCircleTop .HeaderMenu {
@@ -1978,7 +2197,9 @@ main {
 }
 @media (max-width: 960px) {
   .Header.NavCircleTop .HeaderItems {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
 }
 .Header.NavCircleTop .HeaderItems > a {
@@ -1998,6 +2219,7 @@ main {
   display: none;
 }
 .Header.TopHidden {
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   opacity: 0;
 }
@@ -2036,23 +2258,35 @@ main {
   background-color: var(--innerBG);
   background-image: var(--innerBGI);
   min-height: var(--head);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   gap: 8px;
   padding-block: var(--innerPY);
   padding-inline: var(--innerPX);
   gap: var(--innerG);
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 .HeaderLogo {
   z-index: 100;
   margin-right: auto;
-  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
   max-width: unset;
   letter-spacing: normal;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   height: 100%;
   padding-inline: var(--logoPX);
   font-size: var(--logoFZ);
@@ -2070,7 +2304,8 @@ main {
 }
 .HeaderLogo a {
   display: block;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 .HeaderLogo img {
   display: block;
@@ -2089,7 +2324,9 @@ main {
   }
 }
 .HeaderLogo img.Expand {
-  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transition: 1.2s ease-in;
   transition: 1.2s ease-in;
   scale: 1;
 }
@@ -2110,6 +2347,7 @@ main {
   right: var(--PTbottom);
   z-index: 1000;
   opacity: 0;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 @inclute max-md {
@@ -2135,10 +2373,12 @@ main {
   border-radius: var(--PTRad);
   border: var(--PTborder);
   border-color: var(--CC);
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   text-align: center;
 }
 .HeaderPagetop a svg {
+  -webkit-transition: 0.4s;
   transition: 0.4s;
   scale: var(--PTscale);
   width: 50%;
@@ -2155,12 +2395,15 @@ main {
   right: var(--PTbottom);
   z-index: 1000;
   opacity: 0;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   width: var(--PTW);
   height: var(--PTW);
   background-color: var(--PTBG);
   text-align: center;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 4px;
 }
 @inclute max-md {
@@ -2181,13 +2424,15 @@ main {
   border-radius: var(--PTRad);
   border: var(--PTborder);
   border-color: var(--CC);
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   text-align: center;
   width: 62.5%;
   height: 62.5%;
   margin-bottom: 2px;
 }
 .ThemeToggle svg svg {
+  -webkit-transition: 0.4s;
   transition: 0.4s;
   scale: var(--PTscale);
   display: inline-block;
@@ -2198,12 +2443,19 @@ main {
 }
 
 .HeaderItems {
-  order: 1;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-inline: var(--itemPX);
   gap: var(--itemG);
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 @media (max-width: 767px) {
@@ -2225,14 +2477,19 @@ main {
     font-size: 0.875em;
   }
   .HeaderItems .btn.__tel {
-    flex: 1.5;
+    -webkit-box-flex: 1.5;
+        -ms-flex: 1.5;
+            flex: 1.5;
   }
 }
 .HeaderItems.FixRight {
   position: fixed;
   top: 0;
   right: 0;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .HeaderItems.FixRight .btn:after {
   display: none;
@@ -2240,7 +2497,10 @@ main {
 @media (max-width: 767px) {
   .HeaderItems.FixRight {
     --btnH: var(--head);
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     top: unset;
     bottom: 0;
     right: 0px;
@@ -2249,7 +2509,9 @@ main {
     gap: 0.25em;
   }
   .HeaderItems.FixRight > * {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
 }
 .HeaderItems.FixPC {
@@ -2263,9 +2525,15 @@ main {
   }
 }
 .HeaderItems.FixPC {
-  flex-direction: column;
-  align-items: flex-end;
-  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 @media (max-width: 767px) {
   .HeaderItems.FixPC {
@@ -2273,7 +2541,9 @@ main {
   }
   .HeaderItems.FixPC .__img {
     gap: 1em;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     --btnImg: calc(var(--btnH)* .64);
   }
   .HeaderItems.FixPC .__img span {
@@ -2281,13 +2551,19 @@ main {
     margin-right: 0.5em;
   }
   .HeaderItems.FixPC > *:not(.__w100) {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
   .HeaderItems.FixPC .btn.__line {
-    flex: 0.5;
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
   }
   .HeaderItems.FixPC .iconbtn {
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     padding-inline: 0.5em;
     scale: 1.3;
   }
@@ -2295,7 +2571,9 @@ main {
     font-size: var(--btnH);
   }
   .HeaderItems.FixPC .h_text {
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     min-width: 50%;
   }
   .HeaderItems.FixPC .textlink {
@@ -2305,8 +2583,12 @@ main {
     font-size: var(--f24);
     border: var(--btnBD);
     border-radius: var(--btnRad);
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     gap: 0;
   }
   .HeaderItems.FixPC .textlink > * {
@@ -2324,7 +2606,8 @@ main {
 }
 @media (max-width: 960px) {
   .HeaderItems.FixMenu {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     background-color: var(--innerBG);
     position: fixed;
     top: unset;
@@ -2333,10 +2616,14 @@ main {
     padding: 0.5em;
     gap: 0.5em;
     border-top-left-radius: 10px;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
   .HeaderItems.FixMenu imgBtn {
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     padding-inline: 0.25em;
   }
   .HeaderItems.FixMenu .btn {
@@ -2357,7 +2644,8 @@ main {
 }
 @media (max-width: 960px) {
   .HeaderItems.Fix960 {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     background-color: var(--innerBG);
     position: fixed;
     top: unset;
@@ -2366,7 +2654,9 @@ main {
     padding: 0.5em;
     gap: 0.5em;
     border-top-left-radius: 10px;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
 }
 @media (max-width: 767px) {
@@ -2380,21 +2670,27 @@ main {
     background-color: var(--innerBG);
   }
   .HeaderItems.FixTab:is(.trans *) {
-    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
   }
   .HeaderItems.FixTab > * {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     min-width: unset;
     padding-inline: 0.5em;
     text-align: center;
     min-height: var(--head);
-    align-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
     font-size: 1rem;
   }
 }
 @media (max-width: 640px) {
   .HeaderItems.FixSP {
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     border-bottom: unset;
     border-top: 1px solid #ccc;
     position: fixed;
@@ -2407,7 +2703,9 @@ main {
     background-color: var(--innerBG);
   }
   .HeaderItems.FixSP > * {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     min-width: unset;
     --btnFZ: clamp(14px, 2vw, 18px);
   }
@@ -2415,7 +2713,9 @@ main {
     border-left: 1px solid #aaa;
   }
   .HeaderItems.FixSP .iconbtn {
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     padding-inline: 0.5em;
     scale: 1.3;
   }
@@ -2423,7 +2723,9 @@ main {
     font-size: var(--btnH);
   }
   .HeaderItems.FixSP .h_text {
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     min-width: 50%;
   }
   .HeaderItems.FixSP .textlink {
@@ -2433,11 +2735,15 @@ main {
     text-align: right;
     line-height: calc(var(--btnH) / 4);
     padding-block: 0.5em;
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
     gap: 0;
   }
   .HeaderItems.FixSP a:has(> img) {
-    flex: 0.4;
+    -webkit-box-flex: 0.4;
+        -ms-flex: 0.4;
+            flex: 0.4;
   }
   .HeaderItems.FixSP a:has(> img) img {
     margin-inline: auto;
@@ -2446,7 +2752,8 @@ main {
 
 :where(.HeaderNav).a-chev > ul > li > a::after {
   content: "\f105";
-  margin-inline-start: 0.25em;
+  -webkit-margin-start: 0.25em;
+          margin-inline-start: 0.25em;
   font-family: var(--icon);
   font-weight: 900;
   color: var(--AC);
@@ -2472,9 +2779,15 @@ main {
   }
 }
 :where(.HeaderNav) .NavUl {
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   height: 100%;
 }
 :where(.HeaderNav) .NavLi {
@@ -2482,7 +2795,8 @@ main {
   position: relative;
   padding-inline: var(--headG);
   padding-block: 0.5em;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 :where(.HeaderNav) .NavLi:has(span) {
   --liPY: calc(var(--headG)/2);
@@ -2522,8 +2836,10 @@ main {
 }
 :where(.HeaderNav) .NavDrop:last-of-type .DropUl {
   right: 0;
-  transform: unset;
-  transform-origin: top right;
+  -webkit-transform: unset;
+          transform: unset;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
 }
 :where(.HeaderNav) .NavDrop:has(.DropUl:popover-open) ul {
   pointer-events: auto;
@@ -2531,7 +2847,9 @@ main {
   opacity: 1;
 }
 :where(.HeaderNav) .DropA {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   background: transparent;
   border: 0;
   color: inherit;
@@ -2539,7 +2857,9 @@ main {
   font: inherit;
 }
 :where(.HeaderNav) .DropUl {
+  -webkit-transition: var(--trans) allow-discrete;
   transition: var(--trans) allow-discrete;
+  -webkit-transition: opacity var(--trans), scale var(--trans), overlay var(--trans) allow-discrete, display var(--trans) allow-discrete;
   transition: opacity var(--trans), scale var(--trans), overlay var(--trans) allow-discrete, display var(--trans) allow-discrete;
   min-width: 15em;
   overflow: hidden;
@@ -2547,7 +2867,8 @@ main {
   z-index: 1;
   display: block;
   scale: 1 0;
-  transform-origin: top;
+  -webkit-transform-origin: top;
+          transform-origin: top;
   opacity: 0;
   background-color: var(--dropBG);
   padding: 0.75em 1.5em;
@@ -2562,7 +2883,8 @@ main {
     inset: auto;
     top: anchor(bottom);
     justify-self: anchor-center;
-    transform: unset;
+    -webkit-transform: unset;
+            transform: unset;
   }
 }
 @supports (top: anchor(bottom)) {
@@ -2576,9 +2898,15 @@ main {
 }
 :where(.HeaderNav) .DropLi a {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   white-space: nowrap;
   width: 100%;
   height: 100%;
@@ -2604,6 +2932,7 @@ main {
 
 .DropIcon {
   display: inline-block;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   vertical-align: middle;
   fill: currentColor;
@@ -2631,8 +2960,11 @@ main {
   height: var(--menuH);
   margin-inline: var(--menuM);
   border-radius: var(--menuRad);
-  flex-shrink: 0;
-  order: 2;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
   z-index: 1000;
   background-color: var(--menuBG);
   position: relative;
@@ -2640,6 +2972,7 @@ main {
   --btnBG:var(--MC);
 }
 .HeaderMenu.IsBurger > span {
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   grid-area: 1/1;
   width: var(--spanW);
@@ -2678,22 +3011,26 @@ main {
 }
 .HeaderMenu.IsDots {
   --trans: 200ms;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 .HeaderMenu.IsDots > span {
+  -webkit-transition: width var(--trans) linear, height var(--trans) linear, translate 0 linear, opacity var(--trans) var(--trans);
   transition: width var(--trans) linear, height var(--trans) linear, translate 0 linear, opacity var(--trans) var(--trans);
   grid-area: 1/1;
   width: var(--dotW);
   height: var(--dotW);
   background-color: var(--menuC);
   border-radius: calc(var(--dotW));
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .HeaderMenu.IsDots > span:is(.Donuts *) {
   border: 0.125rem solid var(--BK);
 }
 .HeaderMenu.IsDots > span:is(:has(.char) *) {
-  transform: translateY(calc(var(--bargap) * -0.5));
+  -webkit-transform: translateY(calc(var(--bargap) * -0.5));
+          transform: translateY(calc(var(--bargap) * -0.5));
 }
 .HeaderMenu.IsDots .char {
   width: var(--UN);
@@ -2707,26 +3044,31 @@ main {
 }
 .HeaderMenu.IsDots .span1 {
   translate: calc(var(--bargap) * -1) 0;
-  transform-origin: left;
+  -webkit-transform-origin: left;
+          transform-origin: left;
 }
 .HeaderMenu.IsDots .span2 {
   translate: 0 0px;
 }
 .HeaderMenu.IsDots .span3 {
   translate: var(--bargap) 0;
-  transform-origin: right;
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 .HeaderMenu.IsDots[aria-expanded=true] .span1, .HeaderMenu.IsDots:hover .span1 {
   translate: 0 0;
   width: calc(var(--dotW) * 5);
+  -webkit-transition: width var(--trans) linear, translate 0s;
   transition: width var(--trans) linear, translate 0s;
 }
 .HeaderMenu.IsDots[aria-expanded=true] .span2, .HeaderMenu.IsDots:hover .span2 {
   height: calc(var(--dotW) * 5);
+  -webkit-transition: height var(--trans) linear;
   transition: height var(--trans) linear;
 }
 .HeaderMenu.IsDots[aria-expanded=true] .span3, .HeaderMenu.IsDots:hover .span3 {
   opacity: 0;
+  -webkit-transition: opacity 0s;
   transition: opacity 0s;
 }
 .HeaderMenu.IsDots[aria-expanded=true] {
@@ -2758,7 +3100,8 @@ main {
   pointer-events: none;
 }
 :where(.HeaderNavMobile) .NavLi {
-  filter: blur(var(--bw));
+  -webkit-filter: blur(var(--bw));
+          filter: blur(var(--bw));
   opacity: 0;
   translate: 0 var(--bw);
 }
@@ -2771,6 +3114,7 @@ main {
   --bw: 0px;
 }
 :where(.HeaderNavMobile) .FocusTrap {
+  -webkit-transition: var(--trans);
   transition: var(--trans);
   width: 100%;
   background-color: var(--WH) 8;
@@ -2788,7 +3132,8 @@ main {
   position: fixed;
   top: 0;
   right: 0;
-  transform: none !important;
+  -webkit-transform: none !important;
+          transform: none !important;
   width: calc(100vw - var(--head));
   height: 100lvh;
   background-color: var(--WH) 6;
@@ -2846,13 +3191,19 @@ main {
 }
 :where(.HeaderNavMobile) .NavLi {
   display: block;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
 :where(.HeaderNavMobile) .NavLi a {
   font-size: var(--SPnavFZ);
   padding: var(--SPnavPY) var(--SPnavPX);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: baseline;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   gap: 1em;
   margin-inline: auto;
 }
@@ -2860,18 +3211,24 @@ main {
   color: var(--spanC);
   font-weight: var(--spanFW);
   font-size: var(--spanFZ);
-  margin-inline-end: 0.75em;
+  -webkit-margin-end: 0.75em;
+          margin-inline-end: 0.75em;
   font-family: var(--Eng);
 }
 :where(.HeaderNavMobile) .NavLi .DropA {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 :where(.HeaderNavMobile) .NavLi .NoPointer {
   cursor: pointer;
 }
 :where(.HeaderNavMobile) .NavDrop {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   position: relative;
 }
 :where(.HeaderNavMobile) .NavDrop:has(.DropBtn) {
@@ -2896,6 +3253,7 @@ main {
   padding-block: 0;
   width: 100%;
   min-height: 0;
+  -webkit-transition: var(--trans);
   transition: var(--trans);
 }
 :where(.HeaderNavMobile) .DropLi svg {
@@ -2926,7 +3284,8 @@ main {
   border-inline: var(--line);
 }
 :is(.Header, .Footer) .li-bdInline > ul > li + li {
-  margin-inline-start: -1px;
+  -webkit-margin-start: -1px;
+          margin-inline-start: -1px;
 }
 :is(.Header, .Footer) .li-bdL > ul > li {
   padding-inline: var(--headG) 0;
@@ -2985,6 +3344,7 @@ main {
   display: inline-block;
   opacity: 0;
   rotate: none;
+  -webkit-transition: 0s;
   transition: 0s;
 }
 .JsLetter.show > span {
@@ -2993,97 +3353,121 @@ main {
 
 [class*=Js].show:nth-child(1),
 [class*=JsCh] > *.show:nth-child(1) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(1):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(1):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(2),
 [class*=JsCh] > *.show:nth-child(2) {
-  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 [class*=Js].show:nth-child(2):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(2):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(3),
 [class*=JsCh] > *.show:nth-child(3) {
-  transition-delay: 0.4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 [class*=Js].show:nth-child(3):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(3):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(4),
 [class*=JsCh] > *.show:nth-child(4) {
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
 [class*=Js].show:nth-child(4):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(4):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(5),
 [class*=JsCh] > *.show:nth-child(5) {
-  transition-delay: 0.8s;
+  -webkit-transition-delay: 0.8s;
+          transition-delay: 0.8s;
 }
 [class*=Js].show:nth-child(5):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(5):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(6),
 [class*=JsCh] > *.show:nth-child(6) {
-  transition-delay: 1s;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
 }
 [class*=Js].show:nth-child(6):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(6):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(7),
 [class*=JsCh] > *.show:nth-child(7) {
-  transition-delay: 1.2s;
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
 }
 [class*=Js].show:nth-child(7):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(7):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(8),
 [class*=JsCh] > *.show:nth-child(8) {
-  transition-delay: 1.4s;
+  -webkit-transition-delay: 1.4s;
+          transition-delay: 1.4s;
 }
 [class*=Js].show:nth-child(8):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(8):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 [class*=Js].show:nth-child(9),
 [class*=JsCh] > *.show:nth-child(9) {
-  transition-delay: 1.6s;
+  -webkit-transition-delay: 1.6s;
+          transition-delay: 1.6s;
 }
 [class*=Js].show:nth-child(9):is(main > *, form > *),
 [class*=JsCh] > *.show:nth-child(9):is(main > *, form > *) {
-  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 
 .JsHide {
-  filter: blur(var(--jsBlur));
+  -webkit-filter: blur(var(--jsBlur));
+          filter: blur(var(--jsBlur));
   opacity: 0;
+  -webkit-transition: var(--trt);
   transition: var(--trt);
 }
 .JsHide.show {
   opacity: 1;
-  filter: unset;
+  -webkit-filter: unset;
+          filter: unset;
 }
 .JsCpL, .JsCpR {
+  -webkit-transition: var(--trt);
   transition: var(--trt);
   opacity: 0.1;
 }
 .JsCpL.show, .JsCpR.show {
   translate: none;
   opacity: unset;
-  filter: unset;
+  -webkit-filter: unset;
+          filter: unset;
 }
 .JsScale {
   opacity: 0;
+  -webkit-transition: scale 1.8s, opacity 1.2s 0.4s !important;
   transition: scale 1.8s, opacity 1.2s 0.4s !important;
   scale: 0.8;
 }
@@ -3105,13 +3489,15 @@ main {
 }
 
 .JsLeft, .JsRight, .JsTop, .JsBottom, .JsChB > *, .JsChL > *, .JsChR > *, .JsChT > *, .JsChLR > * {
+  -webkit-transition: var(--trt);
   transition: var(--trt);
   opacity: 0;
 }
 .JsLeft.show, .JsRight.show, .JsTop.show, .JsBottom.show, .JsChB > *.show, .JsChL > *.show, .JsChR > *.show, .JsChT > *.show, .JsChLR > *.show {
   opacity: 1;
   translate: unset;
-  filter: unset;
+  -webkit-filter: unset;
+          filter: unset;
 }
 
 .JsCpL {
@@ -3134,6 +3520,7 @@ main {
 .JsCpR,
 .JsCpT,
 .JsCpB {
+  -webkit-transition: var(--trt);
   transition: var(--trt);
   opacity: 0;
 }
@@ -3156,12 +3543,14 @@ main {
 .BudouxFadePhrase {
   display: inline-block;
   opacity: var(--BudouxFadeMin);
+  -webkit-transition: none;
   transition: none;
   vertical-align: baseline;
 }
 
 button,
 a {
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
   font-size: inherit;
 }
@@ -3172,7 +3561,8 @@ a:where(:not([class], .h a, [href*=tel], .__tel)):hover {
 button:hover, button:hover *,
 a:hover,
 a:hover * {
-  transition-delay: 0s !important;
+  -webkit-transition-delay: 0s !important;
+          transition-delay: 0s !important;
 }
 button:is(.itext, .sns_slide ul a),
 a:is(.itext, .sns_slide ul a) {
@@ -3215,12 +3605,21 @@ a:not([class*=_logo], [class*=slick] button):focus {
 }
 
 .submit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin-inline: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 1em;
 }
 
@@ -3229,6 +3628,7 @@ a:not([class*=_logo], [class*=slick] button):focus {
   margin-bottom: 30px;
   margin-block: 1em;
   background-size: cover;
+  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -3237,8 +3637,13 @@ a:not([class*=_logo], [class*=slick] button):focus {
   z-index: 1;
   text-decoration: none;
   display: inline-block;
-  justify-content: var(--btnJC);
-  flex-direction: var(--btnDir);
+  -webkit-box-pack: var(--btnJC);
+      -ms-flex-pack: var(--btnJC);
+          justify-content: var(--btnJC);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: var(--btnDir);
+          flex-direction: var(--btnDir);
   font-size: var(--btnFZ);
   font-weight: var(--btnFW);
   font-family: var(--btnFF);
@@ -3257,14 +3662,18 @@ a:not([class*=_logo], [class*=slick] button):focus {
   padding-block: var(--btnPY);
   gap: var(--btnG);
   border-radius: var(--btnRad);
-  box-shadow: var(--btnSh);
+  -webkit-box-shadow: var(--btnSh);
+          box-shadow: var(--btnSh);
   max-width: 100%;
-  align-content: var(--btnAC);
+  -ms-flex-line-pack: var(--btnAC);
+      align-content: var(--btnAC);
   text-align: var(--btnTA);
   will-change: filter;
   overflow: hidden;
-  transition-duration: var(--btnTR);
-  transition-timing-function: var(--btnTRT);
+  -webkit-transition-duration: var(--btnTR);
+          transition-duration: var(--btnTR);
+  -webkit-transition-timing-function: var(--btnTRT);
+          transition-timing-function: var(--btnTRT);
   color: var(--btnC);
   background-color: var(--btnBG);
   border: var(--line);
@@ -3292,7 +3701,8 @@ a:not([class*=_logo], [class*=slick] button):focus {
   padding-inline: 1.5em;
   border-radius: 0em;
   text-align: center;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   font-family: var(--Eng);
 }
 .btn2:before {
@@ -3333,27 +3743,34 @@ a:not([class*=_logo], [class*=slick] button):focus {
   font-weight: var(--btnIFW);
   line-height: var(--btnFZ);
   margin-inline: var(--btnIMX);
+  -webkit-transition: 0.4s;
   transition: 0.4s;
   vertical-align: var(--btnIVA);
 }
 :where(.btn, .btnL).btn:not([href*=tel], .__tel, span):hover, .btnL:where(.btn, .btnL):not([href*=tel], .__tel, span):hover {
   background-color: var(--hoverBG);
   color: var(--hoverC);
-  filter: var(--hoverFL);
+  -webkit-filter: var(--hoverFL);
+          filter: var(--hoverFL);
 }
 :where(.btn, .btnL).__anchor:after {
   rotate: 90deg;
   top: unset;
-  transform: unset;
+  -webkit-transform: unset;
+          transform: unset;
 }
 :where(.btn, .btnL) img {
   width: var(--btnImg);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: inline-block;
   vertical-align: middle;
 }
 :where(.btn, .btnL):has(img) {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 :where(.btn, .btnL):has(img) img {
   width: var(--btnImg);
@@ -3382,12 +3799,15 @@ a:not([class*=_logo], [class*=slick] button):focus {
 .imgBtn img {
   width: var(--btnImg);
   height: var(--btnImg) !important;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: inline-block;
   vertical-align: middle;
 }
 
 a.label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   line-height: 1.5;
   margin: 0.05em;
@@ -3420,7 +3840,9 @@ a.label {
   place-items: center;
   line-height: var(--btnFZ);
   margin-inline: var(--btnIMX);
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
   will-change: scale;
 }
@@ -3429,7 +3851,8 @@ a.label {
   content: "\f35d";
 }
 .textlink:is(a, span) {
-  text-decoration: var(--TLDeco) !important;
+  -webkit-text-decoration: var(--TLDeco) !important;
+          text-decoration: var(--TLDeco) !important;
   color: var(--TLC);
 }
 .textlink {
@@ -3449,11 +3872,21 @@ a.label {
   border-bottom: 1px solid currentColor;
   border: unset;
   padding-inline: unset;
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
   will-change: scale;
 }
 .textlink:not([href*=tel], .__tel, span):hover {
-  animation: scaleDown calc(var(--btnTR) * 2) var(--btnTRT) forwards;
+  -webkit-animation: scaleDown calc(var(--btnTR) * 2) var(--btnTRT) forwards;
+          animation: scaleDown calc(var(--btnTR) * 2) var(--btnTRT) forwards;
+}
+@-webkit-keyframes scaleDown {
+  10% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
 }
 @keyframes scaleDown {
   10% {
@@ -3469,7 +3902,8 @@ a.label {
   display: inline-block;
   vertical-align: top;
   margin-right: var(--TLG);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .textlink svg:before,
 .textlink i:before {
@@ -3493,10 +3927,15 @@ p:has(> a) {
   font-family: inherit;
   font-weight: inherit;
   max-width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: var(--gapH);
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 p:has(> a) .__anchor {
@@ -3528,7 +3967,9 @@ p:has(> a) .__anchor {
 .f_nav ul a,
 .blog_text h3 span,
 .rss-title {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(currentColor), to(currentColor));
   background-image: linear-gradient(currentColor, currentColor);
+  -webkit-transition: var(--btnTR);
   transition: var(--btnTR);
   background-repeat: no-repeat;
   background-position-y: 100%;
@@ -3544,8 +3985,17 @@ p:has(> a) .__anchor {
 .f_nav ul a:hover,
 .blog_text h3 span:hover,
 .rss-title:hover {
-  animation: rightgrow var(--btnTR);
+  -webkit-animation: rightgrow var(--btnTR);
+          animation: rightgrow var(--btnTR);
   background-position-x: 50%;
+}
+@-webkit-keyframes rightgrow {
+  0% {
+    background-position-x: 200%;
+  }
+  100% {
+    background-position-x: 50%;
+  }
 }
 @keyframes rightgrow {
   0% {
@@ -3567,16 +4017,20 @@ p:has(> a) .__anchor {
 .rss-title {
   background-position-x: -105%;
   background-size: 200% var(--bdw);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--CC)), to(var(--CC)));
   background-image: linear-gradient(var(--CC), var(--CC));
 }
 
 .nav a:not(.drop ul li a) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--dropbtnBF)), to(var(--dropbtnBF)));
   background-image: linear-gradient(var(--dropbtnBF), var(--dropbtnBF));
   background-position-x: 0%;
-  animation: rightgrow var(--btnTR);
+  -webkit-animation: rightgrow var(--btnTR);
+          animation: rightgrow var(--btnTR);
 }
 
 .f_btn {
+  background-image: -webkit-gradient(linear, left top, right top, from(var(--WH)), to(var(--WH)));
   background-image: linear-gradient(to right, var(--WH), var(--WH));
   background-position-x: -103%;
   background-size: 300% 100%;
@@ -3585,6 +4039,7 @@ p:has(> a) .__anchor {
   background-position-x: 0%;
 }
 .f_btn.__wh {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--MC)), to(var(--MC)));
   background-image: linear-gradient(var(--MC), var(--MC));
 }
 
@@ -3701,19 +4156,25 @@ p:has(> a) .__anchor {
 @media (max-width: 1023px) {
   :where(.Cards):is(.bp-lg) > .item {
     width: calc(50% - var(--gap) / 2);
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
   }
 }
 @media (max-width: 767px) {
   :where(.Cards):not(.bp-sm) > .item {
     width: calc(50% - var(--gap) / 2);
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
   }
 }
 @media (max-width: 639px) {
   :where(.Cards):not(.bp-sm) > .item {
     width: 100%;
-    flex: unset;
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
   }
 }
 @media (max-width: 479px) {
@@ -4176,7 +4637,8 @@ p:has(> a) .__anchor {
 }
 :where(.RgbShift) .RgbShiftLayer {
   @apply mix-blend-screen will-change-transform [grid-area:1/1];
-  animation-delay: var(--delay);
+  -webkit-animation-delay: var(--delay);
+          animation-delay: var(--delay);
 }
 :where(.RgbShift) .RgbShiftR {
   @apply pointer-events-none [transform:translate(var(--RgbShiftRX),var(--RgbShiftRY))];
@@ -4188,12 +4650,16 @@ p:has(> a) .__anchor {
   --ys: calc(var(--yl)*0.5);
 }
 :where(.RgbShift) .RgbShiftR:is(.IsBeat *) {
-  transform: unset;
-  animation: RgbShift var(--beat) var(--delay) infinite;
+  -webkit-transform: unset;
+          transform: unset;
+  -webkit-animation: RgbShift var(--beat) var(--delay) infinite;
+          animation: RgbShift var(--beat) var(--delay) infinite;
 }
 :where(.RgbShift) .RgbShiftR:is(.IsBeatY *) {
-  transform: unset;
-  animation: RgbShiftY var(--beat) var(--delay) infinite;
+  -webkit-transform: unset;
+          transform: unset;
+  -webkit-animation: RgbShiftY var(--beat) var(--delay) infinite;
+          animation: RgbShiftY var(--beat) var(--delay) infinite;
 }
 :where(.RgbShift) .RgbShiftG {
   @apply pointer-events-none [transform:translate(0,0)];
@@ -4202,39 +4668,87 @@ p:has(> a) .__anchor {
   @apply pointer-events-auto [transform:translate(var(--RgbShiftBX),var(--RgbShiftBY))];
 }
 :where(.RgbShift) .RgbShiftB:is(.IsBeat *) {
-  transform: unset;
-  animation: RgbShift 3s infinite;
+  -webkit-transform: unset;
+          transform: unset;
+  -webkit-animation: RgbShift 3s infinite;
+          animation: RgbShift 3s infinite;
 }
 :where(.RgbShift) .RgbShiftB:is(.IsBeatY *) {
-  transform: unset;
-  animation: RgbShiftY 3s infinite;
+  -webkit-transform: unset;
+          transform: unset;
+  -webkit-animation: RgbShiftY 3s infinite;
+          animation: RgbShiftY 3s infinite;
+}
+@-webkit-keyframes RgbShift {
+  1% {
+    -webkit-transform: translate(var(--xl), var(--yl));
+            transform: translate(var(--xl), var(--yl));
+  }
+  2% {
+    -webkit-transform: translate(var(--x0), var(--y0));
+            transform: translate(var(--x0), var(--y0));
+  }
+  5% {
+    -webkit-transform: translate(var(--xs), var(--ys));
+            transform: translate(var(--xs), var(--ys));
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
 }
 @keyframes RgbShift {
   1% {
-    transform: translate(var(--xl), var(--yl));
+    -webkit-transform: translate(var(--xl), var(--yl));
+            transform: translate(var(--xl), var(--yl));
   }
   2% {
-    transform: translate(var(--x0), var(--y0));
+    -webkit-transform: translate(var(--x0), var(--y0));
+            transform: translate(var(--x0), var(--y0));
   }
   5% {
-    transform: translate(var(--xs), var(--ys));
+    -webkit-transform: translate(var(--xs), var(--ys));
+            transform: translate(var(--xs), var(--ys));
   }
   100% {
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+@-webkit-keyframes RgbShiftY {
+  1% {
+    -webkit-transform: translate(var(--yl), var(--xl));
+            transform: translate(var(--yl), var(--xl));
+  }
+  2% {
+    -webkit-transform: translate(var(--y0), var(--x0));
+            transform: translate(var(--y0), var(--x0));
+  }
+  5% {
+    -webkit-transform: translate(var(--ys), var(--xs));
+            transform: translate(var(--ys), var(--xs));
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
   }
 }
 @keyframes RgbShiftY {
   1% {
-    transform: translate(var(--yl), var(--xl));
+    -webkit-transform: translate(var(--yl), var(--xl));
+            transform: translate(var(--yl), var(--xl));
   }
   2% {
-    transform: translate(var(--y0), var(--x0));
+    -webkit-transform: translate(var(--y0), var(--x0));
+            transform: translate(var(--y0), var(--x0));
   }
   5% {
-    transform: translate(var(--ys), var(--xs));
+    -webkit-transform: translate(var(--ys), var(--xs));
+            transform: translate(var(--ys), var(--xs));
   }
   100% {
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
   }
 }
 
@@ -4255,14 +4769,27 @@ p:has(> a) .__anchor {
   @apply min-h-[--canvasH];
 }
 :where(.LottieScroll).IsDemo {
-  animation: IsDemo 6s linear forwards;
+  -webkit-animation: IsDemo 6s linear forwards;
+          animation: IsDemo 6s linear forwards;
+}
+@-webkit-keyframes IsDemo {
+  0% {
+    -webkit-filter: brightness(105%);
+            filter: brightness(105%);
+  }
+  100% {
+    -webkit-filter: brightness(150%);
+            filter: brightness(150%);
+  }
 }
 @keyframes IsDemo {
   0% {
-    filter: brightness(105%);
+    -webkit-filter: brightness(105%);
+            filter: brightness(105%);
   }
   100% {
-    filter: brightness(150%);
+    -webkit-filter: brightness(150%);
+            filter: brightness(150%);
   }
 }
 
@@ -4450,15 +4977,22 @@ p:has(> a) .__anchor {
 }
 
 :is(.BarBFAF, .BarBF, .BarAF) {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 0.5rem;
 }
 :is(.BarBFAF, .BarBF, .BarAF):before, :is(.BarBFAF, .BarBF, .BarAF):after {
   content: "";
   height: var(--bdw);
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-color: var(--CC);
 }
 
@@ -4538,7 +5072,8 @@ p:has(> a) .__anchor {
 }
 @media (max-width: 639px) {
   .DescList.IsBorder dl {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .DescList.IsBorder dt, .DescList.IsBorder dd {
     width: 100%;
@@ -4560,14 +5095,18 @@ p:has(> a) .__anchor {
 }
 @media (max-width: 639px) {
   .DescList.IsHead dl {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .DescList.IsHead dt, .DescList.IsHead dd {
     width: 100%;
   }
 }
 .DescList.IsColumn dl {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-block: var(--PY);
 }
 .DescList.IsColumn dt, .DescList.IsColumn dd {
@@ -4591,7 +5130,8 @@ p:has(> a) .__anchor {
   top: 0;
   left: 0;
   width: 1px;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   height: 100%;
   background: var(--MC);
 }
@@ -4606,7 +5146,8 @@ p:has(> a) .__anchor {
   top: 0;
   bottom: 0;
   left: calc(var(--pl) * -1);
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   display: block;
   width: calc(var(--pl) / 4);
   height: calc(var(--pl) / 4);
@@ -4644,7 +5185,9 @@ p:has(> a) .__anchor {
 }
 .DescList.IsCenter dt {
   text-align: right;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 @media (max-width: 639px) {
   .DescList.IsCenter dt, .DescList.IsCenter dd {
@@ -4680,7 +5223,8 @@ p:has(> a) .__anchor {
 }
 
 .bxshbk {
-  box-shadow: var(--bxshbk);
+  -webkit-box-shadow: var(--bxshbk);
+          box-shadow: var(--bxshbk);
 }
 
 .txshwh {
@@ -4723,48 +5267,59 @@ p:has(> a) .__anchor {
 }
 
 .dswh {
-  filter: var(--dswh);
+  -webkit-filter: var(--dswh);
+          filter: var(--dswh);
 }
 
 .dsbk {
-  filter: var(--dsbk);
+  -webkit-filter: var(--dsbk);
+          filter: var(--dsbk);
 }
 
 .dsmc {
-  filter: var(--dsmc);
+  -webkit-filter: var(--dsmc);
+          filter: var(--dsmc);
 }
 
 .dsbc {
-  filter: var(--dsbc);
+  -webkit-filter: var(--dsbc);
+          filter: var(--dsbc);
 }
 
 .dsgr {
-  filter: var(--dsgr);
+  -webkit-filter: var(--dsgr);
+          filter: var(--dsgr);
 }
 
 .pxdswh {
-  filter: var(--pxdswh);
+  -webkit-filter: var(--pxdswh);
+          filter: var(--pxdswh);
 }
 
 .pxdsbk {
-  filter: var(--pxdsbk);
+  -webkit-filter: var(--pxdsbk);
+          filter: var(--pxdsbk);
 }
 
 .pxdsmc {
-  filter: var(--pxdsmc);
+  -webkit-filter: var(--pxdsmc);
+          filter: var(--pxdsmc);
 }
 
 @layer globals {
   .imgContain img {
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
   .imgCover img {
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   /* SVG を img で表示するセクション用（object-fit: cover を上書き） */
   .useSvgIcons img[src$=".svg"],
   .useSvgIcons img[src^="data:image/svg"] {
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
   .img16-9 :is(img, svg, video) {
     aspect-ratio: 16/9;
@@ -4917,35 +5472,4 @@ body > * .in660 {
 }
 body > * .in600 {
   padding-inline: var(--in600);
-}
-
-/* --------------------------------------------------------------------------
- * ScrollX ラッパー（Next ページ専用）
- * 他セクションは --wid だが、ここは常に「1 枚＝画面」とみなす（各 100vw × 100lvh）。
- * 2 枚例: 100vw×100lvh が横に 2 つ。縦は lvh のみ（vh / dvh / svh は使わない）。
- * 動き: sticky 窓 + 下スペーサ分の縦スクロールを translateX に。子の中身装飾はいじらない。
- * -------------------------------------------------------------------------- */
-.ScrollX {
-  position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: var(--out);
-}
-
-/* 1 面ぶんの窓＝1 枚のパネル（画面と同寸）  1 子 = 100vw×100lvh 横一列。ネイティブ横スクロールは使わない（transform のみ） */
-.ScrollTrack {
-  position: sticky;
-  top: 0;
-  display: flex;
-  will-change: transform;
-}
-.ScrollTrack > * {
-  min-width: 100vw;
-  min-height: 100lvh;
-}
-
-/* 縦方向に積まれた「仮想スクロール量」。高さ = 右端まで横に足りる分（px）を JS で設定 */
-.ScrollSpacer {
-  width: 100%;
-  pointer-events: none;
 }
