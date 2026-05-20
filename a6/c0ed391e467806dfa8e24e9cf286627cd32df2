@@ -1,0 +1,32 @@
+package.json
+  s_b72ac87c810ac3::t_eb4e4b1be8d03d 5-6
+assets/theme.scss
+  s_b72ac87c810ac3::t_9f0d46fd923e22 15-108
+functions.php
+  s_b72ac87c810ac3::t_b3ee02af425bfd 124-125
+assets/tailwind.css
+  s_b72ac87c810ac3::t_168d13c155cbd0 1-513
+assets/theme.css
+  s_b72ac87c810ac3::t_168d13c155cbd0 4922-5013
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.10",
+  "base_commit_sha": "a6c0ed391e467806dfa8e24e9cf286627cd32df2",
+  "prompts": {},
+  "humans": {
+    "h_53dad1e32c3c71": {
+      "author": "yuremono <5alviaofficinali50@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_b72ac87c810ac3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e439a-a4a7-78c3-940b-abda473cddb2",
+        "model": "gpt-5.5"
+      },
+      "human_author": "yuremono <5alviaofficinali50@gmail.com>"
+    }
+  }
+}
