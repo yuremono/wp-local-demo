@@ -19,9 +19,53 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function theme_add_layout_body_class( array $classes ): array {
 	$classes[] = 'root';
+	$classes[] = 'SiteTransitionPending';
 	return $classes;
 }
 add_filter( 'body_class', 'theme_add_layout_body_class' );
+
+/**
+ * Render the shared opening / transition overlay.
+ */
+function theme_render_site_transition_overlay(): void {
+	$brand = theme_brand();
+	$brand = trim( $brand );
+	if ( '' === $brand ) {
+		$brand = THEME_BRAND_DEFAULT;
+	}
+
+	$label = preg_replace( '/\s+/', "\n", $brand, 1 );
+	if ( ! is_string( $label ) || '' === $label ) {
+		$label = THEME_BRAND_DEFAULT;
+	}
+	?>
+	<div class="InitialLoading PageTransitionOverlay InitialLoadingLayer" data-site-transition-overlay hidden aria-hidden="true">
+		<p class="InitialLoadingTextProbe mmPin" data-site-transition-probe aria-hidden="true"><?php echo esc_html( $label ); ?></p>
+		<canvas class="PageTransitionCanvas" data-site-transition-canvas aria-hidden="true"></canvas>
+	</div>
+	<?php
+}
+add_action( 'wp_body_open', 'theme_render_site_transition_overlay' );
+
+/**
+ * Hide the page contents until the transition overlay has taken over.
+ */
+function theme_render_site_transition_noscript_style(): void {
+	?>
+	<noscript>
+		<style>
+			body.SiteTransitionPending > :not([data-site-transition-overlay]) {
+				visibility: visible !important;
+			}
+
+			body.SiteTransitionPending > [data-site-transition-overlay] {
+				display: none !important;
+			}
+		</style>
+	</noscript>
+	<?php
+}
+add_action( 'wp_footer', 'theme_render_site_transition_noscript_style', 1 );
 
 /**
  * メインメニューのリンクにクラスを付与。
@@ -276,7 +320,7 @@ function theme_header_nav_fallback_menu( $args = array() ): void {
 	echo '<button type="button" class="DropBtn DropToggle" popovertarget="HeaderRepositoriesMenu-cylinder" aria-label="Toggle repositories submenu"></button>';
 	echo '<ul id="HeaderRepositoriesMenu-cylinder" class="DropUl" popover="auto" aria-label="Repositories">';
 	echo '<li class="DropLi"><a href="https://github.com/yuremono/portfolio" target="_blank" rel="noopener noreferrer">Portfolio' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo '<li class="DropLi"><a href="https://github.com/yuremono/wp-local-demo" target="_blank" rel="noopener noreferrer">wp-local-demo' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<li class="DropLi"><a href="https://github.com/yuremono/portfolio-wp" target="_blank" rel="noopener noreferrer">Portfolio-wp' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '<li class="DropLi"><a href="https://github.com/yuremono/BurnYourOwnStyle/tree/react" target="_blank" rel="noopener noreferrer">BurnYourOwnStyle' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '<li class="DropLi"><a href="https://github.com/yuremono/agent-driven-CMS" target="_blank" rel="noopener noreferrer">AgentDrivenCMS' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '<li class="DropLi"><a href="https://github.com/yuremono/agent-relay" target="_blank" rel="noopener noreferrer">AgentRelay' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -365,7 +409,5 @@ function theme_portfolio_footer_fallback_menu( $args = array() ): void {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<li' . $class . '><a href="' . esc_url( $link['url'] ) . '">' . wp_kses_post( $link['label'] ) . '</a></li>';
 	}
-	echo '<li><a href="https://chat-kanban.vercel.app/" target="_blank" rel="noopener noreferrer">ChatCanban&nbsp;' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo '<li><a href="https://cms0505.vercel.app/" target="_blank" rel="noopener noreferrer">NextJsCMS&nbsp;' . theme_phosphor_icon( 'arrow-square-out', array( 'size' => 16 ) ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '</ul>';
 }

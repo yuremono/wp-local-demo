@@ -53,7 +53,7 @@ footer.Eng.Wrap {
         --foreground: oklch(20% 0.00 270);
         --Eng: var(--Jost);
         --HFF: var(--Jost);
-        color: var(--TC);
+        // color: var(--TC);
 
         --repulsion-list-light: var(--WH);
         --repulsion-list-light-muted: var(--BC);
@@ -63,7 +63,6 @@ footer.Eng.Wrap {
 
 .repulsion-lists-module .repulsion-list-chip.is-initial .repulsion-list-chip-control > span {
         font-family: var(--Jost);
-        color: var(--TC);
 }
 .repulsion-lists-lines {
         position: absolute;
@@ -304,7 +303,7 @@ footer.Eng.Wrap {
 }
 :root{
         --pageTR: 0.5s;
-        --initial-loading-min: 1000ms;
+        --initial-loading-min: 500ms;
 }
 
 // :where(*) {//FireFox
@@ -359,6 +358,15 @@ html.PageTransitionScrollInstant {
 	inset: 0;
 	z-index: 2147483647;
 	pointer-events: none;
+}
+
+body.SiteTransitionPending > :not([data-site-transition-overlay]) {
+	visibility: hidden;
+}
+
+body.SiteTransitionPending > [data-site-transition-overlay] {
+	display: block !important;
+	visibility: visible;
 }
 
 .PageTransitionCanvas {

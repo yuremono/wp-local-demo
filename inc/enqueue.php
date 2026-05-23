@@ -77,5 +77,16 @@ function theme_enqueue_assets(): void {
 			)
 		);
 	}
+
+	wp_enqueue_script(
+		'theme-site-transition',
+		get_template_directory_uri() . '/assets/site-transition.js',
+		array(),
+		theme_asset_version( 'assets/site-transition.js' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_assets' );

@@ -562,6 +562,9 @@ p:has(>a) {
         //     animation: rightgrow var(--btnTR);
         // }
 }
+.HeaderCylinder .HeaderNav a{
+        background-image: unset;
+}
 
 .nav a:not(.drop ul li a) {
         //下線border類似

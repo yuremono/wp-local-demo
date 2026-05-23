@@ -1380,8 +1380,9 @@
                         top: 0px;
                         left: 0px;
                         z-index: 1000;
-                        height: auto;
                         width: calc(var(--logoW) / 3 * 2);
+                        height: auto;
+                        aspect-ratio: 1/2;
                         border-width: 0px;
                         padding: 0px;
                         @media (min-width: 1024px) {
@@ -1390,13 +1391,18 @@
                         	translate: 0 -52.5%;
                         }
                         appearance: none;
-                        background: var(--TR);
-                        // border-radius: 0 999px 999px 0;
                         // overflow: clip;
-                        border-left: 0;
-                        cursor: pointer;
+                        background: var(--TR);
+                        border-radius: 0 999px 999px 0;
+                        // overflow: clip;
+                        pointer-events: none;
+                        border: var(--line);
+                        border-color: var(--TR);
+                        border-left: none;
                         
                         .LogoCylinder {
+                                pointer-events: auto;
+                                cursor: pointer;
                                 width: calc(var(--logoW) / 3 * 2);
                                 aspect-ratio: 1;
                                 display: block;
@@ -1419,24 +1425,26 @@
                         --annoteInterval: 1.5s;
                         position: absolute;
                         left: 0;
-                        top: 0;
-                        bottom: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
                         display: grid;
                         width: 100%;
+                        aspect-ratio: 1;
                         white-space: nowrap;
                         padding-top: 0.5rem;
-                        padding-bottom: 0.5rem;
+                        padding-bottom: 1rem;
                         font-size: 0.75rem;
                         font-weight: 500;
                         letter-spacing: 0em;
+
 
                         &.WTS {
                                 --WTS: var(--tsw) var(--TC30);
                                 color: var(--BC);
                         }
                         @media (min-width: 1024px) {
-                        	top: auto;
                         	padding: 1rem;
+                                align-content: end;
                         }
                         >span{
                                 grid-area: 1/1;
@@ -1534,10 +1542,10 @@
                                 li:nth-of-type(5) {--navX: 0.49;--navClosedY: -200%;}
                         }
                         ul:has(li:nth-of-type(4):last-of-type) {
-                                li:nth-of-type(1) {--navX: 0.58;--navClosedY: 150%;}
-                                li:nth-of-type(2) {--navX: 0.955;--navClosedY: 50%;}
-                                li:nth-of-type(3) {--navX: 0.955;--navClosedY: -50%;}
-                                li:nth-of-type(4) {--navX: 0.58;--navClosedY: -150%;}
+                                li:nth-of-type(1) {--navX: 0.72;--navClosedY: 150%;}
+                                li:nth-of-type(2) {--navX: 0.94;--navClosedY: 50%;}
+                                li:nth-of-type(3) {--navX: 0.94;--navClosedY: -50%;}
+                                li:nth-of-type(4) {--navX: 0.72;--navClosedY: -150%;}
                         }
                         ul:has(li:nth-of-type(3):last-of-type) {
                                 li:nth-of-type(1) {--navX: 0.68;--navClosedY: 100%;}
@@ -1634,6 +1642,29 @@
                                         > li:nth-child(5),> li:nth-child(8) {margin-left: calc(var(--ml) * 6);}
                                         > li:nth-child(6),> li:nth-child(7) {margin-left: calc(var(--ml) * 7);}
                                 }
+
+                                &:has(> li:nth-child(13):last-child) {
+                                        > li:nth-child(1),> li:nth-child(13) {margin-left: 0;}
+                                        > li:nth-child(2),> li:nth-child(12) {margin-left: calc(var(--ml) * 4);}
+                                        > li:nth-child(3),> li:nth-child(11) {margin-left: calc(var(--ml) * 5);}
+                                        > li:nth-child(4),> li:nth-child(10) {margin-left: calc(var(--ml) * 6);}
+                                        > li:nth-child(5),> li:nth-child(9) {margin-left: calc(var(--ml) * 7);}
+                                        > li:nth-child(6),> li:nth-child(8) {margin-left: calc(var(--ml) * 8);}
+                                        > li:nth-child(7) {margin-left: calc(var(--ml) * 8);}
+                                }
+                                &:has(> li:nth-child(14):last-child) {
+                                        > li:nth-child(1),> li:nth-child(14) {margin-left: 0;}
+                                        > li:nth-child(2),> li:nth-child(13) {margin-left: calc(var(--ml) * 4);}
+                                        > li:nth-child(3),> li:nth-child(12) {margin-left: calc(var(--ml) * 5);}
+                                        > li:nth-child(4),> li:nth-child(11) {margin-left: calc(var(--ml) * 6);}
+                                        > li:nth-child(5),> li:nth-child(10) {margin-left: calc(var(--ml) * 7);}
+                                        > li:nth-child(6),> li:nth-child(9) {margin-left: calc(var(--ml) * 8);}
+                                        > li:nth-child(7),> li:nth-child(8) {margin-left: calc(var(--ml) * 8);}
+                                }
+                                position: fixed;
+                                inset: auto;
+                                left: var(--dropPopoverLeft, 0);
+                                top: var(--dropPopoverTop, 0);
                                 @supports (top: anchor(bottom)) {
                                         inset: unset;
                                         left: anchor(right);
@@ -1652,9 +1683,12 @@
                 }
 
                 &[data-nav-open=true] {
+                        .HeaderCylinderLogo {
+                                background-color: var(--background);
+                                border-color: var(--CC) ;
+                        }
                         .HeaderNav {
-                                --tw-bg-opacity: 1;
-                                background-color: color-mix(in srgb, transparent, var(--BC) calc(var(--tw-bg-opacity, 1) * 100%));
+                                background-color: var(--BC);
                                 @media (min-width: 1024px) {
                                 	background-color: var(--TR);
                                 }

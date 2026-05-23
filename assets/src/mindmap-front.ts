@@ -1,6 +1,8 @@
 /**
  * Front-page mind map + mind wobble (bundled for WordPress).
  */
+import { initBudouxShow } from "./budouxShow";
+import { initIntersectionShow } from "./intersectionShow";
 import { initMindMapRuntime } from "./mindMapRuntime";
 
 (function () {
@@ -8,6 +10,8 @@ import { initMindMapRuntime } from "./mindMapRuntime";
 		const root = document.querySelector("[data-portfolio-page]");
 		if (root instanceof HTMLElement) {
 			initMindMapRuntime(root);
+			initBudouxShow(root);
+			initIntersectionShow(root);
 		}
 	};
 

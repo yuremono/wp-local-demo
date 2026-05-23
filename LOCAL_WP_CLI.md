@@ -10,7 +10,7 @@ export WP_CLI_CONFIG_PATH="/Applications/Local.app/Contents/Resources/extraResou
 export WP_CLI_DISABLE_AUTO_CHECK_UPDATE=1
 export PATH="/Users/yanoseiji/Library/Application Support/Local/lightning-services/mysql-8.4.0/bin/darwin-arm64/bin:/Users/yanoseiji/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin:/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/posix:/Applications/Local.app/Contents/Resources/extraResources/bin/composer/posix:$PATH"
 cd "/Users/yanoseiji/Local Sites/yuremono-wp/app/public"
-php -r 'require "./wp-load.php"; require "./wp-content/themes/portfolio-corporate/tools/seed-standard-pages.php";'
+php -r 'require "./wp-load.php"; require "./wp-content/themes/0520portfolio-wp/tools/sync-portfolio-nav.php";'
 ```
 
 固定ページの追加・更新をテストする場合は、同じ環境で以下を実行する。  

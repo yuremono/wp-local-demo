@@ -251,26 +251,26 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.m
 
   function mountLogo(host) {
     const palette = readPalette(host.closest("[data-portfolio-page]") ?? host);
-    const width = host.clientWidth || 120;
-    const height = host.clientHeight || 120;
+    const size = Math.max(1, host.clientWidth || host.clientHeight || 120);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: "low-power" });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(width, height, false);
+    renderer.setSize(size, size, false);
     renderer.domElement.style.width = "100%";
-    renderer.domElement.style.height = "100%";
-    renderer.domElement.className = "LogoCylinder";
+    renderer.domElement.style.height = "auto";
+    renderer.domElement.style.display = "block";
+    renderer.domElement.className = "LogoCylinderCanvas";
     renderer.domElement.setAttribute("role", "img");
     renderer.domElement.removeAttribute("aria-hidden");
     renderer.domElement.setAttribute(
       "aria-label",
       "上面に「ゆ」、側面にMODULATIONを配した円柱ロゴ"
     );
-    host.replaceWith(renderer.domElement);
+    host.replaceChildren(renderer.domElement);
     const surface = renderer.domElement;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(LOGO_CONFIG.cameraFov, width / height, 0.1, 50);
+    const camera = new THREE.PerspectiveCamera(LOGO_CONFIG.cameraFov, 1, 0.1, 50);
     camera.position.set(
       LOGO_CONFIG.cameraPosition[0],
       LOGO_CONFIG.cameraPosition[1],
@@ -354,17 +354,17 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.m
     };
     rafId = window.requestAnimationFrame(render);
 
-    let lastWidth = width;
-    let lastHeight = height;
+    let lastWidth = size;
+    let lastHeight = size;
     const resizeObserver = new ResizeObserver(() => {
-      const w = surface.clientWidth || 120;
-      const h = surface.clientHeight || w;
+      const w = Math.max(1, surface.clientWidth || 120);
+      const h = Math.max(1, w);
       if (w === lastWidth && h === lastHeight) return;
       lastWidth = w;
       lastHeight = h;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(w, h, false);
-      camera.aspect = w / h;
+      camera.aspect = 1;
       camera.updateProjectionMatrix();
     });
     resizeObserver.observe(surface);

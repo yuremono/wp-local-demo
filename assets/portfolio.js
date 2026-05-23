@@ -9,9 +9,6 @@
   const scrollXSections = root.querySelectorAll(".ScrollX");
 
   document.documentElement.classList.add("[--MC:--GR]");
-  root.querySelectorAll(".JsLetter, .BudouxFade, .JsRight, .JsLeft").forEach((el) => {
-    el.classList.add("show");
-  });
 
   function setMenu(open) {
     if (!header || !menuButton || !nav) return;

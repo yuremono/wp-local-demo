@@ -25,8 +25,10 @@
   - フロントページの ACF 初期値を補完する。
 - `set-portfolio-demo-meta.php`
   - ポートフォリオ TOP 用の ACF 初期値を補完する。
+- `sync-portfolio-nav.php`
+  - Local の `primary` / `footer` メニューを、React 版に近いポートフォリオ構成へ同期する。
 - `seed-standard-pages.php`
-  - 標準ページとメニューの初期データを補完する。
+  - 標準ページとメニューの初期データを補完する。別案件向けの古い seed なので、このテーマでは通常使わない。
 - `seed-works.php`
   - `work` CPT の初期データを補完する。
 - `seed-posts-news-media.php`

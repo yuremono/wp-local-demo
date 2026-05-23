@@ -10,8 +10,10 @@
 // 	}
 // }
 :root {
-        --first-delay: 0.6s;
+        --first-delay: 1s;
         --letter-delay: 0.025s;
+        --phrase-delay: 0.2s;
+
 }
 
 .JsLetter {
@@ -170,6 +172,22 @@
         opacity: var(--BudouxFadeMin);
         transition: none;
         vertical-align: baseline;
+}
+
+.BudouxShow {
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+}
+
+.BudouxShowPhrase {
+        display: inline-block;
+        opacity: 0;
+        transition-duration: 0s;
+        vertical-align: baseline;
+}
+
+.BudouxShow.show .BudouxShowPhrase {
+        opacity: 1;
 }
 
 

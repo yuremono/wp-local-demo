@@ -1639,8 +1639,9 @@ html:has([data-portfolio-page]) {
   top: 0px;
   left: 0px;
   z-index: 1000;
-  height: auto;
   width: calc(var(--logoW) / 3 * 2);
+  height: auto;
+  aspect-ratio: 1/2;
   border-width: 0px;
   padding: 0px;
 }
@@ -1654,10 +1655,15 @@ html:has([data-portfolio-page]) {
 .Header.HeaderCylinder .HeaderCylinderLogo {
   appearance: none;
   background: var(--TR);
-  border-left: 0;
-  cursor: pointer;
+  border-radius: 0 999px 999px 0;
+  pointer-events: none;
+  border: var(--line);
+  border-color: var(--TR);
+  border-left: none;
 }
 .Header.HeaderCylinder .HeaderCylinderLogo .LogoCylinder {
+  pointer-events: auto;
+  cursor: pointer;
   width: calc(var(--logoW) / 3 * 2);
   aspect-ratio: 1;
   display: block;
@@ -1680,13 +1686,14 @@ html:has([data-portfolio-page]) {
   --annoteInterval: 1.5s;
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: grid;
   width: 100%;
+  aspect-ratio: 1;
   white-space: nowrap;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0em;
@@ -1697,8 +1704,8 @@ html:has([data-portfolio-page]) {
 }
 @media (min-width: 1024px) {
   .Header.HeaderCylinder .HeaderAnotation {
-    top: auto;
     padding: 1rem;
+    align-content: end;
   }
 }
 .Header.HeaderCylinder .HeaderAnotation > span {
@@ -1828,19 +1835,19 @@ html:has([data-portfolio-page]) {
   --navClosedY: -200%;
 }
 .Header.HeaderCylinder .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(1) {
-  --navX: 0.58;
+  --navX: 0.72;
   --navClosedY: 150%;
 }
 .Header.HeaderCylinder .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(2) {
-  --navX: 0.955;
+  --navX: 0.94;
   --navClosedY: 50%;
 }
 .Header.HeaderCylinder .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(3) {
-  --navX: 0.955;
+  --navX: 0.94;
   --navClosedY: -50%;
 }
 .Header.HeaderCylinder .HeaderNav ul:has(li:nth-of-type(4):last-of-type) li:nth-of-type(4) {
-  --navX: 0.58;
+  --navX: 0.72;
   --navClosedY: -150%;
 }
 .Header.HeaderCylinder .HeaderNav ul:has(li:nth-of-type(3):last-of-type) li:nth-of-type(1) {
@@ -2011,6 +2018,54 @@ html:has([data-portfolio-page]) {
 .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(12):last-child) > li:nth-child(6), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(12):last-child) > li:nth-child(7) {
   margin-left: calc(var(--ml) * 7);
 }
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(1), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(13) {
+  margin-left: 0;
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(2), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(12) {
+  margin-left: calc(var(--ml) * 4);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(3), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(11) {
+  margin-left: calc(var(--ml) * 5);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(4), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(10) {
+  margin-left: calc(var(--ml) * 6);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(5), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(9) {
+  margin-left: calc(var(--ml) * 7);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(6), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(8) {
+  margin-left: calc(var(--ml) * 8);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(13):last-child) > li:nth-child(7) {
+  margin-left: calc(var(--ml) * 8);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(1), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(14) {
+  margin-left: 0;
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(2), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(13) {
+  margin-left: calc(var(--ml) * 4);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(3), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(12) {
+  margin-left: calc(var(--ml) * 5);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(4), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(11) {
+  margin-left: calc(var(--ml) * 6);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(5), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(10) {
+  margin-left: calc(var(--ml) * 7);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(6), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(9) {
+  margin-left: calc(var(--ml) * 8);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(7), .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl:has(> li:nth-child(14):last-child) > li:nth-child(8) {
+  margin-left: calc(var(--ml) * 8);
+}
+.Header.HeaderCylinder .HeaderNav .NavDrop .DropUl {
+  position: fixed;
+  inset: auto;
+  left: var(--dropPopoverLeft, 0);
+  top: var(--dropPopoverTop, 0);
+}
 @supports (top: anchor(bottom)) {
   .Header.HeaderCylinder .HeaderNav .NavDrop .DropUl {
     inset: unset;
@@ -2027,9 +2082,12 @@ html:has([data-portfolio-page]) {
   margin: unset;
   transform: translateY(0.25rem);
 }
+.Header.HeaderCylinder[data-nav-open=true] .HeaderCylinderLogo {
+  background-color: var(--background);
+  border-color: var(--CC);
+}
 .Header.HeaderCylinder[data-nav-open=true] .HeaderNav {
-  --tw-bg-opacity: 1;
-  background-color: color-mix(in srgb, transparent, var(--BC) calc(var(--tw-bg-opacity, 1) * 100%));
+  background-color: var(--BC);
 }
 @media (min-width: 1024px) {
   .Header.HeaderCylinder[data-nav-open=true] .HeaderNav {
@@ -3224,8 +3282,9 @@ html:has([data-portfolio-page]) {
 }
 
 :root {
-  --first-delay: 0.6s;
+  --first-delay: 1s;
   --letter-delay: 0.025s;
+  --phrase-delay: 0.2s;
 }
 
 .JsLetter > span {
@@ -3405,6 +3464,22 @@ html:has([data-portfolio-page]) {
   opacity: var(--BudouxFadeMin);
   transition: none;
   vertical-align: baseline;
+}
+
+.BudouxShow {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.BudouxShowPhrase {
+  display: inline-block;
+  opacity: 0;
+  transition-duration: 0s;
+  vertical-align: baseline;
+}
+
+.BudouxShow.show .BudouxShowPhrase {
+  opacity: 1;
 }
 
 button,
@@ -3817,6 +3892,10 @@ p:has(> a) .__anchor {
   background-position-x: -105%;
   background-size: 200% var(--bdw);
   background-image: linear-gradient(var(--CC), var(--CC));
+}
+
+.HeaderCylinder .HeaderNav a {
+  background-image: unset;
 }
 
 .nav a:not(.drop ul li a) {
@@ -5642,7 +5721,6 @@ footer.Eng.Wrap .text-center > ul {
   --foreground: oklch(20% 0.00 270);
   --Eng: var(--Jost);
   --HFF: var(--Jost);
-  color: var(--TC);
   --repulsion-list-light: var(--WH);
   --repulsion-list-light-muted: var(--BC);
   --repulsion-list-dark: var(--TC);
@@ -5651,7 +5729,6 @@ footer.Eng.Wrap .text-center > ul {
 
 .repulsion-lists-module .repulsion-list-chip.is-initial .repulsion-list-chip-control > span {
   font-family: var(--Jost);
-  color: var(--TC);
 }
 
 .repulsion-lists-lines {
@@ -5938,7 +6015,7 @@ footer.Eng.Wrap .text-center > ul {
 
 :root {
   --pageTR: 0.5s;
-  --initial-loading-min: 1000ms;
+  --initial-loading-min: 500ms;
 }
 
 :where(*)::-webkit-scrollbar {
@@ -5988,6 +6065,15 @@ html.PageTransitionScrollInstant {
   inset: 0;
   z-index: 2147483647;
   pointer-events: none;
+}
+
+body.SiteTransitionPending > :not([data-site-transition-overlay]) {
+  visibility: hidden;
+}
+
+body.SiteTransitionPending > [data-site-transition-overlay] {
+  display: block !important;
+  visibility: visible;
 }
 
 .PageTransitionCanvas {
