@@ -1,5 +1,5 @@
 ---
-name: wp-theme
+name: wp-admin
 description: WordPress テーマで、表示内容を管理画面から編集できるようにするときに使う。ACF フィールド、固定ページテンプレート、CPT、初期データ投入、wp_nav_menu、WYSIWYG 本文、出力エスケープ、既存編集を壊さないデモデータ補完を扱う。
 ---
 

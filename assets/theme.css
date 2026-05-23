@@ -2084,7 +2084,7 @@ html:has([data-portfolio-page]) {
 }
 .Header.HeaderCylinder[data-nav-open=true] .HeaderCylinderLogo {
   background-color: var(--background);
-  border-color: var(--CC);
+  border-color: var(--TC30);
 }
 .Header.HeaderCylinder[data-nav-open=true] .HeaderNav {
   background-color: var(--BC);

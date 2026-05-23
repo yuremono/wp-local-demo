@@ -1,6 +1,6 @@
 # Portfolio Corporate
 
-`https://yuremono.github.io/portfolio/`(ReactSPA)をwordpressに移植しています。
+`https://yuremono.github.io/portfolio/`(ReactSPA)を`https://yuremono.com/`(wordpress)に移植しています。
 フロントページ、固定ページ、`work` / `news` の一覧、問い合わせフォーム、SEO 設定をまとめて扱います。
 ローカルで編集し、CLI で初期データを補完し、SSH + WP-CLI で本番へ反映する流れを前提にしています。
 
@@ -68,3 +68,8 @@
 - [UPDATE_TO_PROD.md](./UPDATE_TO_PROD.md)
 - [tools/AGENTS.md](./tools/AGENTS.md)
 - [LOCAL_WP_CLI.md](./LOCAL_WP_CLI.md)
+
+## スキル
+
+- `wp-admin`: WordPress テーマの管理画面編集、ACF、CPT、メニュー化を扱うときに使う。
+- `wp-deploy`: WordPress テーマの本番反映、SSH 同期、XML 取り込み、デプロイ関連ドキュメント整備を扱うときに使う。

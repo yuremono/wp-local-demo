@@ -49,7 +49,7 @@
 
 ## 専用スキル
 
-このテーマの管理画面編集・ACF・CPT・メニュー化を扱うときは、必要に応じて `.codex/skills/wp-theme/SKILL.md` を読む。
+このテーマの管理画面編集・ACF・CPT・メニュー化を扱うときは、必要に応じて `.codex/skills/wp-admin/SKILL.md` を読む。
 
 ## PHP の静的チェック（PHPCS）
 
